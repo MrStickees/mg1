@@ -4,17 +4,21 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/Bleu/Blue.png</File>
-    <File>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/Bleu/Blue2.png</File>
-    <File>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/Bleu/Blue3.png</File>
-    <File>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/Bleu/Blue4.png</File>
-    <File>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/Bleu/Blue5.png</File>
-    <File>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/floor.png</File>
-    <File>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/grass.png</File>
-    <File>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/wall.png</File>
-    <File>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/wallext.png</File>
+    <File>C:/Users/yanda/Desktop/Monogame/mg1/Content/Bleu/Blue.png</File>
+    <File>C:/Users/yanda/Desktop/Monogame/mg1/Content/Bleu/Blue2.png</File>
+    <File>C:/Users/yanda/Desktop/Monogame/mg1/Content/Bleu/Blue3.png</File>
+    <File>C:/Users/yanda/Desktop/Monogame/mg1/Content/Bleu/Blue4.png</File>
+    <File>C:/Users/yanda/Desktop/Monogame/mg1/Content/Bleu/Blue5.png</File>
+    <File>C:/Users/yanda/Desktop/Monogame/mg1/Content/door.png</File>
+    <File>C:/Users/yanda/Desktop/Monogame/mg1/Content/floor.png</File>
+    <File>C:/Users/yanda/Desktop/Monogame/mg1/Content/grass.png</File>
+    <File>C:/Users/yanda/Desktop/Monogame/mg1/Content/void.png</File>
+    <File>C:/Users/yanda/Desktop/Monogame/mg1/Content/wall.png</File>
+    <File>C:/Users/yanda/Desktop/Monogame/mg1/Content/wallext.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

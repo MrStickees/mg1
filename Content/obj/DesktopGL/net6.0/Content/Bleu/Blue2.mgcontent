@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/Bleu/Blue2.png</SourceFile>
-  <SourceTime>2023-10-23T16:47:22+02:00</SourceTime>
-  <DestFile>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/bin/DesktopGL/Content/Bleu/Blue2.xnb</DestFile>
-  <DestTime>2023-10-29T19:39:34.446553+01:00</DestTime>
+  <SourceFile>C:/Users/yanda/Desktop/Monogame/mg1/Content/Bleu/Blue2.png</SourceFile>
+  <SourceTime>2023-12-04T08:51:00.7983436+01:00</SourceTime>
+  <DestFile>C:/Users/yanda/Desktop/Monogame/mg1/Content/bin/DesktopGL/Content/Bleu/Blue2.xnb</DestFile>
+  <DestTime>2023-12-04T08:51:38.9917437+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

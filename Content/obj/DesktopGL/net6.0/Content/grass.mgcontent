@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/grass.png</SourceFile>
-  <SourceTime>2023-10-30T00:39:43.4467197+01:00</SourceTime>
-  <DestFile>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/bin/DesktopGL/Content/grass.xnb</DestFile>
-  <DestTime>2023-10-30T00:40:20.3719454+01:00</DestTime>
+  <SourceFile>C:/Users/yanda/Desktop/Monogame/mg1/Content/grass.png</SourceFile>
+  <SourceTime>2023-12-04T08:51:02.0321593+01:00</SourceTime>
+  <DestFile>C:/Users/yanda/Desktop/Monogame/mg1/Content/bin/DesktopGL/Content/grass.xnb</DestFile>
+  <DestTime>2023-12-04T08:51:45.2487458+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

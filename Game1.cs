@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Mime;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -15,6 +16,10 @@ public class Game1 : Game
     private const int TotalFrames = 5;
     private const int MillisecondsPerFrame = 100;
 
+    private int size = 64;
+
+
+
     public Game1()
     {
         graphics = new GraphicsDeviceManager(this);
@@ -25,12 +30,13 @@ public class Game1 : Game
     protected override void Initialize()
     {
         map = new Maps(new Texture2D[] {
+            Content.Load<Texture2D>("void"),
             Content.Load<Texture2D>("grass"),
             Content.Load<Texture2D>("wallext"),
-            Content.Load<Texture2D>("floor"),
-            Content.Load<Texture2D>("wall"),
-            
-            });
+            Content.Load<Texture2D>("door")
+            },
+            size
+        );
 
         // Charger la liste de textures pour l'animation du joueur
         Texture2D[] playerTextures = new Texture2D[]{
@@ -43,7 +49,7 @@ public class Game1 : Game
 
         player = new Player(
             playerTextures,
-            new Vector2(32, 32),
+            new Vector2(size, size),
             TotalFrames,
             MillisecondsPerFrame,
             new Keys[] {
@@ -52,7 +58,7 @@ public class Game1 : Game
                 Keys.S,
                 Keys.Q
                 },
-            2f
+            size
             );
 
         base.Initialize();

@@ -8,23 +8,46 @@ public class Maps
 {
     private int rows;
     private int columns;
-    private int[,] cells;
+    public int[,] cells;
+    public int[,] floor;
     private Texture2D[] Texture;
-    private int[] valuesSafe = { -1, 1, 3 };
+    private int[] valuesSafe = {2};
 
+    private int size;
 
-    public Maps(Texture2D[] Texture)
+    public Maps(Texture2D[] Texture, int size = 32)
     {
+        floor = new int[,]
+        {
+            {0,0,0,0,1,0,0,0,0,1,0,0,0,0},
+            {0,1,1,1,1,1,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,1,1,1,1,1,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        };
+
         cells = new int[,]
         {
-            {1,1,1,1},
-            {1,0,2,1},
-            {1,0,0,1},
-            {1,1,1,1}
+            {2,2,2,2,3,2,2,2,2,3,2,2,2,2},
+            {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+            {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+            {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+            {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+            {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+            {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+            {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+            {2,2,2,2,2,2,2,2,2,2,2,2,2,2},
+
         };
+
         rows = cells.GetLength(1);
         columns = cells.GetLength(0);
         this.Texture = Texture;
+        this.size = size;
     }
 
     public void Draw(SpriteBatch spriteBatch, Vector2 offset)
@@ -33,7 +56,19 @@ public class Maps
         {
             for (int j = 0; j < columns; j++)
             {
-                spriteBatch.Draw(Texture[cells[j, i]], new Rectangle((int)(i * 32 + offset.X), (int)(j * 32 + offset.Y), 32, 32), Color.White);
+                if (floor[j, i] > 0) {
+                    spriteBatch.Draw(Texture[floor[j, i]], new Rectangle((int)(i * size + offset.X), (int)(j * size + offset.Y), size, size), Color.White);
+                }
+            }
+        }
+
+        for (int i = 0; i < cells.GetLength(1); i++)
+        {
+            for (int j = 0; j < cells.GetLength(0); j++)
+            {
+                if (cells[j, i] > 0) {
+                    spriteBatch.Draw(Texture[cells[j, i]], new Rectangle((int)(i * size + offset.X), (int)(j * size + offset.Y), size, size), Color.White);
+                }
             }
         }
     }
@@ -51,11 +86,53 @@ public class Maps
     {
         for (int i = 0; i < valuesSafe.Length; i++)
         {
-            if (value == valuesSafe[i])
+            if (value>0)
             {
-                return false;
+                return false || isDoor(value);
             }
         }
         return true;
+    }
+
+    public bool isDoor(int value)
+    {
+        if (value == 3)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void ResetMaps()
+    {
+        floor = new int[,]
+        {
+            {0,0,0,0,1,0,0,0,0,1,0,0,0,0},
+            {0,1,1,1,1,1,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,1,1,1,1,1,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        };
+
+        cells = new int[,]
+        {
+            {2,2,2,2,3,2,2,2,2,3,2,2,2,2},
+            {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+            {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+            {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+            {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+            {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+            {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+            {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+            {2,2,2,2,2,2,2,2,2,2,2,2,2,2},
+
+        };
+
+        rows = cells.GetLength(1);
+        columns = cells.GetLength(0);
     }
 }

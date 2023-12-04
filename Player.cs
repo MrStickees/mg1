@@ -9,21 +9,28 @@ public class Player
 {
     private Texture2D[] animationTextures;
     public Vector2 position;
+    public Vector2 positionSpawn;
     private Keys[] keys;
     private int currentFrame;
     private int totalFrames;
     private int millisecondsPerFrame;
     private int elapsedMilliseconds;
-    private float speed;
+    private int speed;
+    public bool isLoose = false;
+    private int score = 0;
 
-    public Player(Texture2D[] animationTextures, Vector2 position, int totalFrames, int millisecondsPerFrame, Keys[] keys, float speed = 8)
+    private int size;
+
+    public Player(Texture2D[] animationTextures, Vector2 position, int totalFrames, int millisecondsPerFrame, Keys[] keys, int size = 32)
     {
         this.animationTextures = animationTextures;
+        this.positionSpawn = position;
         this.position = position;
         this.totalFrames = totalFrames;
         this.millisecondsPerFrame = millisecondsPerFrame;
         this.keys = keys;
-        this.speed = speed;
+        this.speed = size/16;
+        this.size = size;
     }
 
     public void Update(GameTime gameTime, Maps map)
@@ -40,7 +47,7 @@ public class Player
             currentFrame = 0;
             elapsedMilliseconds = 0;
         }
-        
+
         Move(map);
     }
 
@@ -53,31 +60,59 @@ public class Player
         float centerY = offset.Y;
 
         Rectangle sourceRectangle = new Rectangle(0, 0, frameWidth, frameHeight);
-        Rectangle destinationRectangle = new Rectangle((int)centerX, (int)centerY, 32, 32);
+        Rectangle destinationRectangle = new Rectangle((int)centerX, (int)centerY, size, size);
 
         spriteBatch.Draw(animationTextures[currentFrame], destinationRectangle, sourceRectangle, Color.White);
     }
 
+    public void Reset(Maps map, int score = 0)
+    {
+        position = positionSpawn;
+        isLoose = false;
+        this.score = score;
+        map.ResetMaps();
+    }
+
+    public void isCollideDoor(Maps map)
+    {
+        bool randomBool = new Random().Next(0, 3) < 2;
+
+        
+        if (randomBool)
+        {
+            score++;
+            Reset(map, score);
+            Console.WriteLine("Win");
+            Console.WriteLine("Score : " + score);
+        }
+        else
+        {
+            Console.WriteLine("Loose");
+            Reset(map);
+        }
+    }
+
     public void Move(Maps map)
     {
+        if (isLoose) return;
         if (Keyboard.GetState().IsKeyDown(keys[0]))
         {
-            int cellValue1 = map.GetCellValue((int)(position.X / 32), (int)(position.Y / 32));
-            int cellValue2 = map.GetCellValue((int)((position.X + 32) / 32), (int)(position.Y / 32));
+            int cellValue1 = map.GetCellValue((int)(position.X / size), (int)(position.Y / size));
+            int cellValue2 = map.GetCellValue((int)((position.X + size) / size), (int)(position.Y / size));
             bool v1 = map.getSafe(cellValue1);
             bool v2 = map.getSafe(cellValue2);
 
-            if (v1 && v2 || v1 && position.X % 32 == 0)
+            if (v1 && v2 || v1 && position.X % size == 0)
             {
                 position.Y -= speed;
             }
 
-            cellValue1 = map.GetCellValue((int)(position.X / 32), (int)(position.Y / 32));
-            cellValue2 = map.GetCellValue((int)((position.X + 32) / 32), (int)(position.Y / 32));
+            cellValue1 = map.GetCellValue((int)(position.X / size), (int)(position.Y / size));
+            cellValue2 = map.GetCellValue((int)((position.X + size) / size), (int)(position.Y / size));
             v1 = map.getSafe(cellValue1);
             v2 = map.getSafe(cellValue2);
 
-            if (!v1 || !v2 && position.X % 32 != 0)
+            if (!v1 || !v2 && position.X % size != 0)
             {
                 position.Y += speed;
             }
@@ -85,12 +120,12 @@ public class Player
 
         if (Keyboard.GetState().IsKeyDown(keys[1]))
         {
-            int cellValue1 = map.GetCellValue((int)((position.X + 32) / 32), (int)(position.Y / 32));
-            int cellValue2 = map.GetCellValue((int)((position.X + 32) / 32), (int)((position.Y + 32) / 32));
+            int cellValue1 = map.GetCellValue((int)((position.X + size) / size), (int)(position.Y / size));
+            int cellValue2 = map.GetCellValue((int)((position.X + size) / size), (int)((position.Y + size) / size));
             bool v1 = map.getSafe(cellValue1);
             bool v2 = map.getSafe(cellValue2);
 
-            if (v1 && v2 || v1 && position.Y % 32 == 0)
+            if (v1 && v2 || v1 && position.Y % size == 0)
             {
                 position.X += speed;
             }
@@ -98,12 +133,12 @@ public class Player
 
         if (Keyboard.GetState().IsKeyDown(keys[2]))
         {
-            int cellValue1 = map.GetCellValue((int)(position.X / 32), (int)((position.Y + 32) / 32));
-            int cellValue2 = map.GetCellValue((int)((position.X + 32) / 32), (int)((position.Y + 32) / 32));
+            int cellValue1 = map.GetCellValue((int)(position.X / size), (int)((position.Y + size) / size));
+            int cellValue2 = map.GetCellValue((int)((position.X + size) / size), (int)((position.Y + size) / size));
             bool v1 = map.getSafe(cellValue1);
             bool v2 = map.getSafe(cellValue2);
 
-            if (v1 && v2 || v1 && position.X % 32 == 0)
+            if (v1 && v2 || v1 && position.X % size == 0)
             {
                 position.Y += speed;
             }
@@ -111,28 +146,39 @@ public class Player
 
         if (Keyboard.GetState().IsKeyDown(keys[3]))
         {
-            int cellValue1 = map.GetCellValue((int)(position.X / 32), (int)(position.Y / 32));
-            int cellValue2 = map.GetCellValue((int)(position.X / 32), (int)((position.Y + 32) / 32));
+            int cellValue1 = map.GetCellValue((int)(position.X / size), (int)(position.Y / size));
+            int cellValue2 = map.GetCellValue((int)(position.X / size), (int)((position.Y + size) / size));
             bool v1 = map.getSafe(cellValue1);
             bool v2 = map.getSafe(cellValue2);
 
-            if (v1 && v2 || v1 && position.Y % 32 == 0)
+            if (v1 && v2 || v1 && position.Y % size == 0)
             {
                 position.X -= speed;
             }
 
-            cellValue1 = map.GetCellValue((int)(position.X / 32), (int)(position.Y / 32));
-            cellValue2 = map.GetCellValue((int)(position.X / 32), (int)((position.Y + 32) / 32));
+            cellValue1 = map.GetCellValue((int)(position.X / size), (int)(position.Y / size));
+            cellValue2 = map.GetCellValue((int)(position.X / size), (int)((position.Y + size) / size));
 
             v1 = map.getSafe(cellValue1);
             v2 = map.getSafe(cellValue2);
 
-            if (!v1 || !v2 && position.Y % 32 != 0)
+            if (!v1 || !v2 && position.Y % size != 0)
             {
                 position.X += speed;
             }
         }
-    }
 
+        if (Keyboard.GetState().GetPressedKeyCount() > 0)
+        {
+            int value = map.GetCellValue((int)(position.X / size), (int)(position.Y / size));
+            bool isDoor = map.isDoor(value);
+
+            if (isDoor)
+            {
+                isCollideDoor(map);
+            }
+            
+        }
+    }
 }
 
