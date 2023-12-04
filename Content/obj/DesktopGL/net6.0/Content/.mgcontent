@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/Bleu/Blue.png</File>
+    <File>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/Bleu/Blue2.png</File>
+    <File>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/Bleu/Blue3.png</File>
+    <File>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/Bleu/Blue4.png</File>
+    <File>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/Bleu/Blue5.png</File>
+    <File>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/floor.png</File>
+    <File>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/grass.png</File>
+    <File>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/wall.png</File>
+    <File>C:/Users/yanda/Desktop/gameprogramming/jeux1/Content/wallext.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
